@@ -1,0 +1,36 @@
+Brute Force Approach
+Every value can be placed into a separate matrix at its final rotated position. For a value currently at row r and column c, the clockwise destination is row c and column n - 1 - r.
+
+After all values are copied to their rotated positions, the temporary matrix is copied back into the original matrix. This is direct and easy to verify, but it does not satisfy the strict in-place space goal because it stores another n x n matrix.
+
+Algorithm
+Create a temporary square matrix with the same size as the input matrix.
+
+For every cell in the original matrix, compute its clockwise destination using the row-column mapping.
+
+Store the current value in the destination cell of the temporary matrix.
+
+Copy every value from the temporary matrix back into the original matrix.
+
+Complexity Analysis
+Time Complexity: O(n²), because all n² cells are read once and copied back once.
+
+Space Complexity: O(n²), because a separate n x n matrix is used.
+
+Optimal Approach
+In the rotated matrix, the first column of the original matrix becomes the first row of the output matrix in reverse order. For the sample matrix, [1, 5, 9, 13] becomes [13, 9, 5, 1]. The same pattern holds for every column: each original column becomes one row after rotation, read from bottom to top.
+
+This observation leads naturally to transposition. A transpose changes columns into rows by swapping values across the main diagonal. After transposition, every row contains the correct set of values for the rotated matrix, but the order inside each row still needs to be reversed.
+
+So the rotation can be completed in two transformations: transpose the matrix, then reverse every row.
+
+Algorithm
+Swap values across the main diagonal to transpose the matrix in place.
+
+During transposition, only swap cells above the diagonal with their matching cells below the diagonal.
+
+After the transpose is complete, reverse each row of the matrix.
+
+Keep every reversal in place so no additional matrix is created.
+
+Stop after all rows have been reversed.
