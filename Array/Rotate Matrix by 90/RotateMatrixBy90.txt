@@ -34,3 +34,8 @@ After the transpose is complete, reverse each row of the matrix.
 Keep every reversal in place so no additional matrix is created.
 
 Stop after all rows have been reversed.
+
+Complexity Analysis
+Time Complexity: O(n²), because transposition touches roughly half the matrix and row reversal touches all rows.
+
+Space Complexity: O(1), because the matrix is modified in place with only temporary variables.
